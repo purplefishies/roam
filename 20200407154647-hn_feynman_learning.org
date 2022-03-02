@@ -1,0 +1,24 @@
+:PROPERTIES:
+:ID:       a9689704-6e7e-4ea2-9038-b1198bf4f21b
+:END:
+#+TITLE: HN: Feynman Learning 
+
+- tags :: [[id:9be35436-68b0-4483-95ee-927f8543e716][Physics]], [[id:96595a0d-3138-4327-969d-46d011f0c92d][Note-taking]], [[id:677900fd-599e-48b6-8c6f-85d0407eb379][Smart Notes]]
+
+* Feynman technique
+
+  Richard Feynman had a technique for learning things. It was based on the idea
+  that you should understand a topic well enough that you could explain it to 
+  a complete beginner in such a way that they would be able to grok the key
+  ideas 
+
+  
+* Feynman Lectures
+
+  http://www.openculture.com/2012/04/richard_feynman_presents_quantum_electrodynamics_for_the_nonscientist.html
+
+
+
+
+
+

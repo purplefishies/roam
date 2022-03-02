@@ -1,0 +1,20 @@
+:PROPERTIES:
+:ID:       80b758fd-1199-4a38-a4bb-97e45e10a47d
+:END:
+#+title: Linux Device Drivers
+
+
+* Overview
+
+
+
+
+* Types
+  :PROPERTIES:
+  :CAPTURED: <2022-03-02 13:18>
+  :ID:       03cfc5b5-d65b-4e02-8bba-ebd338449409
+  :END:
+
+- [[id:5ebaaaf2-0184-4a57-aab2-4b956fac5757][USB Gadget Devices]]  
+ 
+* 
