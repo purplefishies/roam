@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       5ebaaaf2-0184-4a57-aab2-4b956fac5757
+:CAPTURED: <2022-03-02 13:19>
+:END:
+#+title: USB Gadget Devices
+
+
+
+
