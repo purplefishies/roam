@@ -1,0 +1,45 @@
+:PROPERTIES:
+:ID:       f6ebb021-5bcc-49ce-a108-ea4063a3f721
+:CAPTURED: <2022-03-03 16:41>
+:END:
+#+title: Python
+
+* Overview
+
+
+* Grammar
+
+** Simple String parsing
+
+  Scenario : We'd like to parse a string in place like you can do with Perl or Ruby
+
+  #+begin_src python
+import re
+a = '<2022-03-03 16:30>'
+print(re.compile(r"""<(.*?)>""", re.VERBOSE).match(a).group(1))
+  #+end_src
+
+
+
+
+** Datetime
+
+*** Parsing
+
+#+begin_src python
+ttime = re.compile(r"""<(.*?)>""", re.VERBOSE).match(a).group(1)
+#+end_src
+
+*** Math
+
+#+begin_src python
+t1 = parse("2010")
+t2 = parse("2011")
+t1 + timedelta(days=300) > t2
+# False
+t1 + timedelta(days=365) > t2
+#+end_src
+
+*** 
+
+
