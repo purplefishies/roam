@@ -15,42 +15,80 @@
   HID (human interface devices ), printers or multimedia devices (webcam/audio )
 
 
+* Key Kernel Configurations
+
+** Support for USB Gadgets
+:PROPERTIES:
+:ID:       29d73f87-f7d2-4523-acf4-06e8558d9861
+:END:
+
+*** 
+
+
 * Loading Modules
 
   
 ** Serial ACM connection
 
+*** USB as a serial connection from Linux USB host (USB-A) to Embedded Linux USB gadget(USB-C)
+
+Prerequisites
+- Make sure you've configured the Embedded Linux to have [[id:29d73f87-f7d2-4523-acf4-06e8558d9861][Support for USB Gadgets]]
+- Embedded (USB-C) Host run the following
 #+begin_src bash
-# mount configfs
-mount -t configfs none /sys/kernel/config
-# load libcomposite module
-modprobe libcomposite
-# create a gadget
-mkdir /sys/kernel/config/usb_gadget/g1
-# cd to its configfs node
-cd /sys/kernel/config/usb_gadget/g1
-# configure it (vid/pid can be anything if USB Class is used for driver compat)
-echo 0xabcd > idVendor
-echo 0x1234 > idProduct
-# configure its serial/mfg/product
-mkdir strings/0x409
-echo myserial > strings/0x409/serialnumber
-echo mymfg > strings/0x409/manufacturer
-echo myproduct > strings/0x409/product
-# create a config
-mkdir configs/c.1
-# configure it with attributes if needed
-echo 120 > configs/c.1/MaxPower
-# ensure function is loaded
-modprobe usb_f_acm
-# create the function (name must match a usb_f_<name> module such as 'acm')
-mkdir functions/acm.0
-# associate function with config
-ln -s functions/acm.0 configs/c.1
-# enable gadget by binding it to a UDC from /sys/class/udc
-echo 0000:01:00.0 > UDC
-# to unbind it: echo "" UDC; sleep 1; rm -rf /sys/kernel/config/usb_gadget/g1
+  modprobe g_serial use_acm=0
 #+end_src
+
+
+- On the Host side attach the USB cable (USB-A)
+
+- Capture the key USB information from the connection
+#+begin_src bash
+dmesg -w 
+#+end_src
+- You should see Wait until you see these lines
+#+begin_example
+[72612.626533] usb 3-3.4: Manufacturer: Linux 5.4.47-imx8mp+g6d581ab60958 with dwc3-gadget                                                               │····································
+[73062.859729] usb 3-3.4: USB disconnect, device number 6                                                                                                │····································
+[73080.492608] usb 3-3.4: new high-speed USB device number 7 using xhci_hcd                                                                              │····································
+[73080.601633] usb 3-3.4: New USB device found, idVendor=0525, idProduct=a4a6                                                                            │····································
+[73080.601637] usb 3-3.4: New USB device strings: Mfr=1, Product=2, SerialNumber=0                                                                       │····································
+[73080.601638] usb 3-3.4: Product: Gadget Serial v2.4                                                                                                    │····································
+[73080.601640] usb 3-3.4: Manufacturer: Linux 5.4.47-imx8mp+g6d581ab60958 with dwc3-gadget 
+#+end_example
+- Now you will use the idVendor part to setup the usb
+#+begin_src bash
+sudo   cat /sys/kernel/debug/usb/devices | grep -B3 -A7 0525   
+#+end_src
+
+Gives output
+#+begin_example
+T:  Bus=03 Lev=02 Prnt=03 Port=03 Cnt=03 Dev#=  7 Spd=480  MxCh= 0                                                                                       │····································
+D:  Ver= 2.10 Cls=ff(vend.) Sub=00 Prot=00 MxPS=64 #Cfgs=  1                                                                                             │····································
+P:  Vendor=0525 ProdID=a4a6 Rev= 5.04                                                                                                                    │····································
+S:  Manufacturer=Linux 5.4.47-imx8mp+g6d581ab60958 with dwc3-gadget                                                                                      │····································
+S:  Product=Gadget Serial v2.4                                                                                                                           │····································
+C:* #Ifs= 1 Cfg#= 1 Atr=c0 MxPwr=  2mA                                                                                                                   │····································
+I:* If#= 0 Alt= 0 #EPs= 2 Cls=ff(vend.) Sub=00 Prot=00 Driver=usbserial_generic                                                                          │····································
+E:  Ad=81(I) Atr=02(Bulk) MxPS= 512 Ivl=0ms                                                                                                              │····································
+E:  Ad=01(O) Atr=02(Bulk) MxPS= 512 Ivl=0ms       
+#+end_example
+
+- Setup the serial
+#+begin_src bash
+sudo sh -c "echo 0x0525 0xA4A6 >/sys/bus/usb-serial/drivers/generic/new_id" 
+#+end_src
+
+
+- At this point you will have a USB device setup for you
+#+begin_example
+[73367.398308] usbserial_generic 3-3.4:1.0: The "generic" usb-serial driver is only for testing and one-off prototypes.                                  │····································
+[73367.398311] usbserial_generic 3-3.4:1.0: Tell linux-usb@vger.kernel.org to add your device to a proper driver.                                        │····································
+[73367.398314] usbserial_generic 3-3.4:1.0: generic converter detected                                                                                   │····································
+[73367.398448] usb 3-3.4: generic converter now attached to ttyUSB1    
+#+end_example
+
+- You can now test your connection using ttyUSB1 ->  /dev/ttyGS0
 
 
 ** Ethernet Connection

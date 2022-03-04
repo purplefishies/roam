@@ -9,6 +9,20 @@
 
 * Grammar
 
+** Exceptions
+#+begin_src python
+try:
+  f = open("demofile.txt")
+  try:
+    f.write("Lorum Ipsum")
+  except:
+    print("Something went wrong when writing to the file")
+  finally:
+    f.close()
+except:
+  print("Something went wrong when opening the file")
+#+end_src
+
 ** Simple String parsing
 
   Scenario : We'd like to parse a string in place like you can do with Perl or Ruby
@@ -18,9 +32,6 @@ import re
 a = '<2022-03-03 16:30>'
 print(re.compile(r"""<(.*?)>""", re.VERBOSE).match(a).group(1))
   #+end_src
-
-
-
 
 ** Datetime
 
