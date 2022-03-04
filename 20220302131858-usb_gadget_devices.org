@@ -5,10 +5,69 @@
 #+title: USB Gadget Devices
 
 
+* USB Gadget Devices
+  :PROPERTIES:
+  :ANKI_NOTE_ID: 1646257430405
+  :END:
 
+  A USB gadget device driver will enable a connected to device to appear as one of a variety of types of
+  devices. These can range from connectivity based devices ( ACM, Ethernet, serial ports ), storage devices
+  HID (human interface devices ), printers or multimedia devices (webcam/audio )
+
+
+* Loading Modules
+
+  
+** Serial ACM connection
+
+#+begin_src bash
+# mount configfs
+mount -t configfs none /sys/kernel/config
+# load libcomposite module
+modprobe libcomposite
+# create a gadget
+mkdir /sys/kernel/config/usb_gadget/g1
+# cd to its configfs node
+cd /sys/kernel/config/usb_gadget/g1
+# configure it (vid/pid can be anything if USB Class is used for driver compat)
+echo 0xabcd > idVendor
+echo 0x1234 > idProduct
+# configure its serial/mfg/product
+mkdir strings/0x409
+echo myserial > strings/0x409/serialnumber
+echo mymfg > strings/0x409/manufacturer
+echo myproduct > strings/0x409/product
+# create a config
+mkdir configs/c.1
+# configure it with attributes if needed
+echo 120 > configs/c.1/MaxPower
+# ensure function is loaded
+modprobe usb_f_acm
+# create the function (name must match a usb_f_<name> module such as 'acm')
+mkdir functions/acm.0
+# associate function with config
+ln -s functions/acm.0 configs/c.1
+# enable gadget by binding it to a UDC from /sys/class/udc
+echo 0000:01:00.0 > UDC
+# to unbind it: echo "" UDC; sleep 1; rm -rf /sys/kernel/config/usb_gadget/g1
+#+end_src
+
+
+** Ethernet Connection
+
+* Questions                                                                     :questions:
+  :PROPERTIES:
+  :CAPTURED: <2022-03-02 13:44>
+  :END:
+  :QUESTIONS:
+  :END:
 
 
 * References
 
   - [[https://www.kernel.org/doc/html/latest/usb/gadget-testing.html][Linux Kernel usb testing]]
+
+  - [[http://trac.gateworks.com/wiki/linux/OTG][Gateworks's USB On The Go (OTG)]]
+
+
 
