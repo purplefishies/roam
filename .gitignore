@@ -280,3 +280,9 @@ TSWLatexianTemp*
 
 # Agenda files
 \#%2AOrg%20Agenda*
+
+# Ignore scatch files
+\#*.org\#
+
+# Link files
+\.\#*.org
