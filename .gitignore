@@ -274,3 +274,9 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+# Tilde files
+*~
+
+# Agenda files
+\#%2AOrg%20Agenda*
