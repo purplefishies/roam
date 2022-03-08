@@ -27,7 +27,6 @@
 
 * Loading Modules
 
-  
 ** Serial ACM connection
 
 *** USB as a serial connection from Linux USB host (USB-A) to Embedded Linux USB gadget(USB-C)
@@ -91,11 +90,32 @@ sudo sh -c "echo 0x0525 0xA4A6 >/sys/bus/usb-serial/drivers/generic/new_id"
 - You can now test your connection using ttyUSB1 ->  /dev/ttyGS0
 
 
+**** Caveats
+
+ There's an issue where if you don't have the device attached already
+ ( USB connected ) then you won't get the drivers to load
+ correctly. You will see something like the following
+
+#+begin_example
+[  167.773853] udc-core: couldn't find an available UDC - added [g_serial] to list of pending drivers                                                    │·····
+#+end_example
+
+
 ** Ethernet Connection
+:PROPERTIES:
+:ID:       9ddd9cae-8517-4421-86b4-5ce69c3dec91
+:END:
+
+** g_zero driver
+
+** 
+
+
 
 * Questions                                                                     :questions:
   :PROPERTIES:
   :CAPTURED: <2022-03-02 13:44>
+  :ID:       a23bbf58-6a01-452b-8fc2-6cb2757836c5
   :END:
   :QUESTIONS:
   :END:
