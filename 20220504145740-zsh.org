@@ -1,0 +1,50 @@
+:PROPERTIES:
+:ID:       318061ca-55ef-4d4a-bf47-8cd657f0340f
+:CAPTURED: <2022-05-04 14:57>
+:END:
+#+title: Zsh
+
+
+* Setting it up
+:PROPERTIES:
+:ID:       7e4f8351-b7ef-4c7e-83cc-c33ca79bcc06
+:END:
+
+#+begin_src bash
+apt install zsh
+#+end_src
+
+
+
+* Oh my Zsh
+
+** What is it
+:PROPERTIES:
+:ANKI_DECK: Mega
+:ANKI_NOTE_TYPE: Basic (and reversed card)
+:ANKI_NOTE_ID: 1651702343397
+:CAPTURED: <2022-05-04 15:16>
+:END:
+
+*** Front
+
+Popular customization system for Zsh 
+
+*** Back
+
+- Oh my zsh
+- A shell script for downloading the key packages
+
+
+** Installing
+:PROPERTIES:
+:ID:       61dcdab0-774f-478e-859f-bc058b3be306
+:END:
+
+#+begin_src bash
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+#+end_src
+
+** 
+
+** 
