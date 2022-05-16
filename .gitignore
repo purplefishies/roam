@@ -286,3 +286,5 @@ TSWLatexianTemp*
 
 # Link files
 \.\#*.org
+
+*.db
