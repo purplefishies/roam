@@ -1,0 +1,33 @@
+:PROPERTIES:
+:ID:       b0b85879-4afc-479b-a62e-eeaec23ed20c
+:CAPTURED: <2022-05-16 10:18>
+:END:
+#+title: Monkey Patching
+
+
+* Python patching methods
+
+#+begin_src python
+import types
+
+class Foo:
+    def __init__(self,a,b):
+        self.a = a
+        self.b = b
+        
+    def do(self,a):
+        print("Arg was  %s" % (a))
+
+
+
+f = Foo(1,2)
+f.do(3)
+# Arg was 3
+def dooo(self,a):
+    print("New dooo %s" % (a))
+
+f.do = types.MethodType(dooo, Foo )
+# New dooo 3
+#+end_src
+
+
