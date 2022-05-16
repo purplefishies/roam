@@ -17,6 +17,9 @@ apt install zsh
 
 
 * Oh my Zsh
+:PROPERTIES:
+:CAPTURED: <2022-05-05 10:58>
+:END:
 
 ** What is it
 :PROPERTIES:
