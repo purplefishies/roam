@@ -1,0 +1,6 @@
+#+TITLE: Remmina
+
+
+* Fixing Capslock
+
+  - https://github.com/TigerVNC/tigervnc/issues/1379
