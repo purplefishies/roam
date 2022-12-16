@@ -1,0 +1,60 @@
+:PROPERTIES:
+:ID:       d9f71105-df36-4c50-b30d-e911a8441b70
+:CAPTURED: <2022-12-02 06:46>
+:END:
+#+SETUPFILE:./hugo_setup.org
+#+HUGO_SECTION: zettels
+#+TITLE: Gstreamer
+
+
+* Examples
+
+** SRTP with no Encryption
+
+*** Server
+# CAPS="${CAPS} rtcp-auth=0"
+# CAPS="${CAPS} rtcp-cipher=0"
+# CAPS="${CAPS} rtp-auth=0"
+#+begin_src server
+KEY="012345678901234567890123456789012345678901234567890123456789"
+PARAMS=""
+PARAMS="${PARAMS} rtp-auth=0 rtcp-auth=0 rtcp-cipher=0"
+PARAMS="${PARAMS} rtp-cipher=0  key=$KEY"
+gst-launch-1.0 -v videotestsrc pattern=ball ! \
+   videoconvert ! \
+   video/x-raw,format=UYVY ! jpegenc quality=75 ! \
+   rtpjpegpay name=pay0 pt=26 mtu=1400 ! \
+   'application/x-rtp, ssrc=(uint)3412089386'  ! \
+   srtpenc  ${PARAMS} ! \
+   udpsink host=237.1.1.1 auto-multicast=true port=5000
+#+end_src
+
+*** Client
+#+begin_src bash
+KEY="012345678901234567890123456789012345678901234567890123456789"
+SSRC="3412089386"
+CAPS="application/x-srtp, payload=(int)8, ssrc=(uint)${SSRC}"
+CAPS="${CAPS},srtp-key=(buffer)$KEY"
+CAPS="${CAPS},srtp-cipher=(string)null"
+CAPS="${CAPS},srtp-auth=(string)null"
+CAPS="${CAPS},srtcp-cipher=(string)null"
+CAPS="${CAPS},srtcp-auth=(string)null"
+gst-launch-1.0 -v udpsrc port=5000 \
+       multicast-group=237.1.1.1 \
+       caps="${CAPS}" ! \
+   srtpdec ! queue ! \
+   rtpjpegdepay ! \
+   jpegdec ! \
+   fpsdisplaysink text-overlay=true \
+       signal-fps-measurements=true \
+       video-sink=autovideosink
+ #+end_src
+
+
+
+
+* References
+
+ - https://gist.github.com/hum4n0id/2760d987a5a4b68c24256edd9db6b42b
+
+
