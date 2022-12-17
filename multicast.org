@@ -1,0 +1,70 @@
+:PROPERTIES:
+:ID:       c60f34eb-6689-4694-9157-0c43cefea077
+:END:
+#+HUGO_SECTION: zettels
+#+ANKI_DECK: DeepikaComingUpToSpeed
+
+#+TITLE: Multicast 
+
+
+* Overview
+
+- a one-to-many or many-to-many distribution system
+- Whereas broadcast affects everyone on a network node, multi-cast
+  will only affect those clients who have subscribed
+
+- "membership of a group"
+
+
+
+* Group Membership
+
+** How does Multicast group membership occur 
+
+
+** It defined by an ip address and port number .
+
+Once a group has membership the host will receive any data packets
+that are sent to that grtoup.
+
+
+
+* Terms
+
+** PIM 
+
+Protocol independent Multicast 
+
+
+A collection of routing protocols , each optimized for different
+environments: 
+
+PIM sparse vs .PIM Dense
+
+Pim bi-Directional
+
+
+Usually either Sparse or Dense.
+
+
+https://github.com/troglobit/pimd
+
+** IGMP
+
+Internet Group Management Protocol
+
+
+- Allows several devices to share one IP address so they can all
+  receive the same data.
+
+- Network layer protocol to setup multicasting 
+
+- 
+
+
+** Multicast testing  
+
+https://serverfault.com/questions/584334/multicast-route-setup-for-multiple-interface
+
+
+https://tldp.org/HOWTO/Adv-Routing-HOWTO/lartc.multicast.html
