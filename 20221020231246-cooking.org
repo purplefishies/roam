@@ -1,0 +1,46 @@
+
+:PROPERTIES:
+:ID:       306f6617-4fb4-486a-b2c7-da24f5b44454
+:END:
+#+ANKI_DECK: DeepikaComingUpToSpeed
+
+#+title: Cooking
+
+
+* Mise en guard :drill:
+** Questions
+ :PROPERTIES:
+  :ANKI_NOTE_TYPE: Basic (and reversed card)
+  :ANKI_TAGS: languages european_languages
+  :ANKI_DECK: DeepikaComingUpToSpeed
+ :ANKI_FAILURE_REASON: Wrong number of arguments: (3 . 3), 2
+  :END:
+*** Front 
+
+Mise en Guard
+
+*** Back
+
+Caution
+
+
+* Mise en scene :drill:
+  :PROPERTIES:
+  :DRILL_LAST_INTERVAL: 4.14
+  :DRILL_REPEATS_SINCE_FAIL: 2
+  :DRILL_TOTAL_REPEATS: 1q
+  :DRILL_FAILURE_COUNT: 0
+  :DRILL_AVERAGE_QUALITY: 5.0
+  :DRILL_EASE: 2.6
+  :DRILL_LAST_QUALITY: 5
+  :DRILL_LAST_REVIEWED: [2019-11-22 Fri 07:45]
+  :CAPTURED: <2022-10-20 23:12>
+  :END:
+
+What is mise en scene
+
+** Answer
+
+The scenery
+
+The setting for a play
