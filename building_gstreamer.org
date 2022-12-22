@@ -78,7 +78,10 @@ pip install hotdoc
 #+ATTR_LaTeX:   :options label={Meson build settings},samepage
 #+begin_src bash
 meson   -Ddoc=enabled -Dlibav=enabled -Dgpl=enabled -Dvaapi=enabled --prefix $HOME/Tools/gstreamer-1.20.4 build
+ninja -C build
 #+end_src
+
+
 
 
 * 1.19 and beyond
@@ -116,7 +119,7 @@ even if you disable them.
 
 
 #+begin_src bash
-meson   -Dlibav=disabled -Dvaapi=enabled --prefix $HOME/Tools/gstreamer-1.20.4 build
+meson  -Ddoc=enabled -Dlibav=disabled -Dvaapi=enabled --prefix $HOME/Tools/gstreamer-1.20.4 build
 ...
 #+end_src
 
