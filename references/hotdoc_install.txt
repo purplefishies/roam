@@ -1,0 +1,153 @@
+[38;5;197m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m) [0m[39m[49msudo apt-get install llvm libclang-dev
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+libclang-dev is already the newest version (1:10.0-50~exp1).
+The following packages were automatically installed and are no longer required:
+  libfprint-2-tod1 libfwupdplugin1 libgl2ps-dev liboce-foundation11 liboce-modeling11 liboce-ocaf-lite11 liboce-ocaf11 liboce-visualization11 librhash0 libxmlb1 shim
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  llvm llvm-runtime
+0 upgraded, 2 newly installed, 0 to remove and 4 not upgraded.
+Need to get 6,796 B of archives.
+After this operation, 128 kB of additional disk space will be used.
+Get:1 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 llvm-runtime amd64 1:10.0-50~exp1 [2,916 B]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 llvm amd64 1:10.0-50~exp1 [3,880 B]
+Fetched 6,796 B in 0s (22.7 kB/s)
+Selecting previously unselected package llvm-runtime.
+(Reading database ... 795463 files and directories currently installed.)
+Preparing to unpack .../llvm-runtime_1%3a10.0-50~exp1_amd64.deb ...
+Unpacking llvm-runtime (1:10.0-50~exp1) ...
+Selecting previously unselected package llvm.
+Preparing to unpack .../llvm_1%3a10.0-50~exp1_amd64.deb ...
+Unpacking llvm (1:10.0-50~exp1) ...
+Setting up llvm-runtime (1:10.0-50~exp1) ...
+Setting up llvm (1:10.0-50~exp1) ...
+Processing triggers for man-db (2.9.1-1) ...
+[38;5;197m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m)
+
+[0m[38;5;197m[49m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m)
+
+[0m[38;5;197m[49m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m)
+[0m[38;5;197m[49m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m) [0m[39m[49mpip install  --upgrade --force-reinstall hotdoc
+Processing /home/jimi_damon/.cache/pip/wheels/08/9d/5f/6df6734c1971044c76d27a8328e250a4a3d7f55f2e71c6615c/hotdoc-0.14.0-cp38-cp38-linux_x86_64.whl
+Collecting toposort>=1.4
+  Using cached toposort-1.7-py2.py3-none-any.whl (9.0 kB)
+Collecting networkx>=2.5
+  Using cached networkx-2.8.8-py3-none-any.whl (2.0 MB)
+Collecting appdirs
+  Using cached appdirs-1.4.4-py2.py3-none-any.whl (9.6 kB)
+Collecting dbus-deviation>=0.4.0
+  Using cached dbus_deviation-0.6.1-py3-none-any.whl (52 kB)
+Collecting schema
+  Using cached schema-0.7.5-py2.py3-none-any.whl (17 kB)
+Collecting lxml
+  Using cached lxml-4.9.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl (7.1 MB)
+Processing /home/jimi_damon/.cache/pip/wheels/61/0a/49/65b1337d4437d400c0587ebb58031f2d42ed1c7b5fe3a6b03d/feedgen-0.9.0-py2.py3-none-any.whl
+Processing /home/jimi_damon/.cache/pip/wheels/a0/d9/a7/e6f2212ec54f59d7ffc65659c763c71ff9992c1a5273ddc316/wheezy.template-3.1.0-py3-none-any.whl
+Collecting charset-normalizer
+  Using cached charset_normalizer-3.0.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (195 kB)
+Collecting pkgconfig
+  Using cached pkgconfig-1.5.5-py3-none-any.whl (6.7 kB)
+Collecting pyyaml>=5.1
+  Using cached PyYAML-6.0-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (701 kB)
+Collecting contextlib2>=0.5.5
+  Using cached contextlib2-21.6.0-py2.py3-none-any.whl (13 kB)
+Collecting python-dateutil
+  Using cached python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+Collecting six>=1.5
+  Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
+[31mERROR: requests 2.28.1 has requirement charset-normalizer<3,>=2, but you'll have charset-normalizer 3.0.1 which is incompatible.[39m
+Installing collected packages: toposort, networkx, appdirs, lxml, dbus-deviation, contextlib2, schema, six, python-dateutil, feedgen, wheezy.template, charset-normalizer, pkgconfig, py
+yaml, hotdoc
+  Attempting uninstall: toposort
+    Found existing installation: toposort 1.7
+    Uninstalling toposort-1.7:
+      Successfully uninstalled toposort-1.7
+  Attempting uninstall: networkx
+    Found existing installation: networkx 2.8.8
+    Uninstalling networkx-2.8.8:
+      Successfully uninstalled networkx-2.8.8
+  Attempting uninstall: appdirs
+    Found existing installation: appdirs 1.4.4
+    Uninstalling appdirs-1.4.4:
+      Successfully uninstalled appdirs-1.4.4
+  Attempting uninstall: lxml
+    Found existing installation: lxml 4.9.2
+    Uninstalling lxml-4.9.2:
+      Successfully uninstalled lxml-4.9.2
+  Attempting uninstall: dbus-deviation
+    Found existing installation: dbus-deviation 0.6.1
+    Uninstalling dbus-deviation-0.6.1:
+      Successfully uninstalled dbus-deviation-0.6.1
+  Attempting uninstall: contextlib2
+    Found existing installation: contextlib2 21.6.0
+    Uninstalling contextlib2-21.6.0:
+      Successfully uninstalled contextlib2-21.6.0
+  Attempting uninstall: schema
+    Found existing installation: schema 0.7.5
+    Uninstalling schema-0.7.5:
+      Successfully uninstalled schema-0.7.5
+  Attempting uninstall: six
+    Found existing installation: six 1.16.0
+    Uninstalling six-1.16.0:
+      Successfully uninstalled six-1.16.0
+  Attempting uninstall: python-dateutil
+    Found existing installation: python-dateutil 2.8.2
+    Uninstalling python-dateutil-2.8.2:
+      Successfully uninstalled python-dateutil-2.8.2
+  Attempting uninstall: feedgen
+    Found existing installation: feedgen 0.9.0
+    Uninstalling feedgen-0.9.0:
+      Successfully uninstalled feedgen-0.9.0
+  Attempting uninstall: wheezy.template
+    Found existing installation: wheezy.template 3.1.0
+    Uninstalling wheezy.template-3.1.0:
+      Successfully uninstalled wheezy.template-3.1.0
+  Attempting uninstall: charset-normalizer
+    Found existing installation: charset-normalizer 3.0.1
+    Uninstalling charset-normalizer-3.0.1:
+      Successfully uninstalled charset-normalizer-3.0.1
+  Attempting uninstall: pkgconfig
+    Found existing installation: pkgconfig 1.5.5
+    Uninstalling pkgconfig-1.5.5:
+      Successfully uninstalled pkgconfig-1.5.5
+  Attempting uninstall: pyyaml
+    Found existing installation: PyYAML 6.0
+    Uninstalling PyYAML-6.0:
+      Successfully uninstalled PyYAML-6.0
+  Attempting uninstall: hotdoc
+    Found existing installation: hotdoc 0.14.0
+    Uninstalling hotdoc-0.14.0:
+      Successfully uninstalled hotdoc-0.14.0
+Successfully installed appdirs-1.4.4 charset-normalizer-3.0.1 contextlib2-21.6.0 dbus-deviation-0.6.1 feedgen-0.9.0 hotdoc-0.14.0 lxml-4.9.2 networkx-2.8.8 pkgconfig-1.5.5 python-dateu
+til-2.8.2 pyyaml-6.0 schema-0.7.5 six-1.16.0 toposort-1.7 wheezy.template-3.1.0
+[38;5;197m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m) [0m[39m[49mhotdoc --list-extensions
+Extensions:
+ - c-extension
+ - check-missing-since-markers
+ - comment-on-github
+ - core-tags
+ - dbus-extension
+ - devhelp-extension
+ - edit-on-github
+ - feedgen
+ - gi-extension
+ - git-upload
+ - gst-extension
+ - license-extension
+ - search
+ - syntax-highlighting-extension
+[38;5;197m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m)
+
+[0m[38;5;197m[49m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m)
+
+[0m[39m[49mls[38;5;197m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m) [0m[39m[49m
+
+[38;5;197m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m) [0m[39m[49mls
+[38;5;253margparse[39m  [38;5;253mglob[39m                  [34mgst-examples[39m                [34mgst-plugins-base[39m  [34mgstreamer[39m        [34mlibnice[39m      [38;5;253mmeson_options.txt[39m  [38;5;253mre[39m         [38;5;253mshutil[39m         [34msubprojects[39m
+[34mbuild[39m     [34mgst-devtools[39m          [34mgst-integration-testsuites[39m  [34mgst-plugins-good[39m  [34mgst-rtsp-server[39m  [1m[38;5;220mLICENSE[0m[39m[49m      [38;5;253mos[39m                 [38;5;184mREADME.md[39m  [38;5;253msignal[39m         [38;5;253mtempfile[39m
+[34mci[39m        [34mgst-editing-services[39m  [34mgst-libav[39m                   [34mgst-plugins-ugly[39m  [34minstall[39m          [34mls[39m           [38;5;253mpathlib[39m            [34mscripts[39m    [38;5;41msrcelement.py[39m  [34mtests[39m
+[34mdata[39m      [1m[38;5;215mgst-env.py[0m[39m[49m            [34mgst-plugins-bad[39m             [34mgst-python[39m        [38;5;253mjson[39m             [38;5;253mmeson.build[39m  [38;5;253mplatform[39m           [38;5;253mshlex[39m      [38;5;253msubprocess[39m
+[38;5;197m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m) [0m[39m[49m^C
+[38;5;197m(venv:conan) [38;5;147mPrescott [39mgstreamer [1m[38;5;114m((1.20.4)[0m[39m[49m |[38;5;29m…[1m[38;5;114m)

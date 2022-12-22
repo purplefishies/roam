@@ -1,0 +1,277 @@
+:PROPERTIES:
+:ID:       93e4eb6e-d834-4013-85ad-e42b0ddd25f2
+:END:
+#+LATEX_HEADER: \usepackage{xparse}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER:     colorlinks,
+#+LATEX_HEADER:     linkcolor={red!50!black},
+#+LATEX_HEADER:     citecolor={blue!50!black},
+#+LATEX_HEADER:     urlcolor={blue!80!black}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \usepackage[backend=bibtex]{biblatex}   % bibliography
+#+LATEX_HEADER: \addbibresource{/home/jimi_damon/Dropbox/org/Zettelkasten/Zettelkasten.bib}
+#+LATEX_HEADER: \usepackage[dvipsnames,svgnames]{xcolor}
+#+LATEX_HEADER: \hypersetup{colorlinks,linkcolor={red!50!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+#+LATEX_HEADER: \AtEveryBibitem{\clearfield{urlyear}
+#+LATEX_HEADER: \clearfield{urlmonth}}#
+#+LATEX_HEADER: \usepackage{indentfirst}
+#+LATEX_HEADER: \usepackage{multimedia}
+#+LATEX_HEADER: \usepackage[bigfiles]{pdfbase}
+#+LATEX_HEADER: \usepackage{media9}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage{tcolorbox}
+#+LATEX_HEADER: \usepackage{etoolbox}
+#+LATEX_HEADER: \addmediapath{.}
+#+LATEX_HEADER: \newcommand\Small{\fontsize{9}{9.2}\selectfont}
+#+LATEX_HEADER: \newcommand*\LSTfont{\Small\ttfamily\SetTracking{encoding=*}{-60}\lsstyle}
+#+LATEX_HEADER: \AtBeginEnvironment{quote}{\tiny}% Step font down one size relative to current font.
+#+LATEX_HEADER: \AtBeginEnvironment{quote}{\small}% Step font down one size relative to current font.
+#+LATEX_HEADER: \setminted[bash]{ %
+#+LATEX_HEADER:     linenos=true,             % Line numbers
+#+LATEX_HEADER:     autogobble=false,          % Automatically remove common white space
+#+LATEX_HEADER:     frame=single,
+#+LATEX_HEADER:     framesep=2mm,
+#+LATEX_HEADER:     fontsize=\footnotesize,
+#+LATEX_HEADER: }
+
+:PROPERTIES:
+:ID:       41d451a9-f587-40bc-822c-b9d665095a8e
+:END:
+#+SETUPFILE:./hugo_setup.org
+#+HUGO_SECTION: zettels
+#+TITLE: Building GStreamer
+
+* Build instructions
+
+
+** Preliminaries
+
+*** Python virtual environment
+#+begin_src bash
+source ~/Python3/VENVS/conan/bin/activate
+#+end_src
+*** Install Meson
+
+*** Ubuntu Packages 
+
+
+*** So you can install documentation
+
+- You need the c-extension in order to generate correct documentation
+
+#+begin_src bash
+sudo apt-get install llvm libclang-dev
+#+end_src
+
+- You need hotdoc
+#+begin_src bash
+pip install hotdoc
+#+end_src
+
+[[file:references/hotdoc_install.txt][Install of LLVM and hotdoc]]
+
+
+
+* Versions pre-1.19
+
+#+ATTR_LaTeX:   :options label={Meson build settings},samepage
+#+begin_src bash
+meson   -Ddoc=enabled -Dlibav=enabled -Dgpl=enabled -Dvaapi=enabled --prefix $HOME/Tools/gstreamer-1.20.4 build
+#+end_src
+
+
+* 1.19 and beyond
+
+
+* Iterations
+:PROPERTIES:
+:CAPTURED: <2022-12-01 09:15>
+:END:
+
+** Build 1
+
+#+begin_quote
+
+#+end_quote
+
+
+*** Notes
+- Missing omx
+- Missing vaapi
+- Missing org1a274b5
+
+*** Installing packages
+:PROPERTIES:
+:CAPTURED: <2022-12-01 09:22>
+:END:
+
+
+* Proper build of 1.20.4
+
+
+It is required to disable libav ( FFMpeg ). At this time it seems that
+that build is not stable and repeatedly fails on running unit tests
+even if you disable them.
+
+
+#+begin_src bash
+meson   -Dlibav=disabled -Dvaapi=enabled --prefix $HOME/Tools/gstreamer-1.20.4 build
+...
+#+end_src
+
+#+begin_src bash
+ninja -C build
+#+end_src
+
+** Finishing up
+
+#+begin_src bash
+export LD_LIBRARY_PATH=$HOME/Tools/gstreamer-1.20.4/lib/x86_64-linux-gnu:$HOME/Tools/gstreamer-1.20.4/lib
+sudo ldconfig
+
+#+end_src
+
+
+** Video build
+
+#+ATTR_HTML: :width 1400
+#+ATTR_ORG: :width 800 
+
+[[file:./GNsgYp1y2QgF1BKOQiFcIgAmJ.png]]
+
+#+BEGIN_EXPORT html
+<script id="asciicast-GNsgYp1y2QgF1BKOQiFcIgAmJ" src="https://asciinema.org/a/GNsgYp1y2QgF1BKOQiFcIgAmJ.js" async></script>
+#+END_EXPORT
+
+
+
+* Latest build instructions
+#+begin_src bash
+meson -Dlibav=enabled -Dgpl=enabled -Dvaapi=enabled --prefix $HOME/Tools/gstreamer-1.20.4 build
+#+end_src
+
+** 1.20.3 
+#+begin_src bash
+meson --reconfigure -Dlibav=enabled -Dgpl=enabled -Dvaapi=enabled --prefix $HOME/Tools/gstreamer-1.20.4 build
+#+end_src
+
+
+* Issues
+** Python Loading
+
+- Doesn't find the simple examples such as identity_py
+
+- The meson install doesn't install any of the sample python plugins
+
+- PYTHONPATH and GI_TYPELIB_PATH don't get updated
+  
+*** Building and testing the Python samples within Gstreamer
+
+
+#+begin_src bash
+./gst-env.py
+export PYTHONPATH=/home/jimi_damon/Projects/work/GST/gstreamer/subprojects/gst-python
+
+GST_DEBUG=python:4 gst-inspect-1.0 identity_py
+#+end_src
+
+
+**** Bad
+#+begin_src bash
+[gst-HEAD] (venv:conan) Prescott examples ((1.20.4) |…) GST_PLUGIN_PATH=$GST_PLUGIN_PATH:$PWD GST_DEBUG=4 gst-inspect-1.0 --gst-plugin-path=$(pwd) identity_py
+#+end_src
+
+#+begin_quote
+0:00:00.000041258 3169125 0x55c61c44fc00 INFO                GST_INIT gst.c:591:init_pre: Initializing GStreamer Core Library version 1.20.4
+0:00:00.000063433 3169125 0x55c61c44fc00 INFO                GST_INIT gst.c:592:init_pre: Using library installed in /home/jimi_damon/Tools/gstreamer-1.20.4/lib/x86_64-linux-gnu
+0:00:00.000069792 3169125 0x55c61c44fc00 INFO                GST_INIT gst.c:610:init_pre: Linux Prescott 5.15.0-56-generic #62~20.04.1-Ubuntu SMP Tue Nov 22 21:24:20 UTC 2022 x86_64
+0:00:00.000099851 3169125 0x55c61c44fc00 INFO                GST_INIT gst.c:503:add_path_func: Adding plugin path: "/home/jimi_damon/Projects/work/GST/gstreamer/subprojects/gst-python/examples", will scan later
+0:00:00.000285170 3169125 0x55c61c44fc00 INFO                GST_INIT gstmessage.c:129:_priv_gst_message_initialize: init messages
+0:00:00.000586882 3169125 0x55c61c44fc00 INFO                GST_INIT gstcontext.c:86:_priv_gst_context_initialize: init contexts
+0:00:00.000740717 3169125 0x55c61c44fc00 INFO      GST_PLUGIN_LOADING gstplugin.c:324:_priv_gst_plugin_initialize: registering 0 static plugins
+0:00:00.000821137 3169125 0x55c61c44fc00 INFO      GST_PLUGIN_LOADING gstplugin.c:232:gst_plugin_register_static: registered static plugin "staticelements"
+0:00:00.000827552 3169125 0x55c61c44fc00 INFO      GST_PLUGIN_LOADING gstplugin.c:234:gst_plugin_register_static: added static plugin "staticelements", result: 1
+0:00:00.000891062 3169125 0x55c61c44fc00 INFO            GST_REGISTRY gstregistry.c:1826:ensure_current_registry: reading registry cache: /home/jimi_damon/Projects/work/GST/gstreamer/build/registry.dat
+0:00:00.007148317 3169125 0x55c61c44fc00 INFO            GST_REGISTRY gstregistrybinary.c:683:priv_gst_registry_binary_read_cache: loaded /home/jimi_damon/Projects/work/GST/gstreamer/build/registry.dat in 0.006242 seconds
+0:00:00.007224723 3169125 0x55c61c44fc00 INFO            GST_REGISTRY gstregistry.c:1693:scan_and_update_registry: Validating plugins from registry cache: /home/jimi_damon/Projects/work/GST/gstreamer/build/registry.dat
+0:00:00.007234332 3169125 0x55c61c44fc00 INFO            GST_REGISTRY gstregistry.c:1705:scan_and_update_registry: Scanning plugin path: "/home/jimi_damon/Projects/work/GST/gstreamer/subprojects/gst-python/examples"
+....
+0:00:00.024851965 3169336 0x55a801dedc00 INFO            GST_REGISTRY gstregistry.c:1785:scan_and_update_registry: Registry cache has not changed
+0:00:00.024911778 3169336 0x55a801dedc00 INFO            GST_REGISTRY gstregistry.c:1861:ensure_current_registry: registry reading and updating done
+0:00:00.024939638 3169336 0x55a801dedc00 INFO                GST_INIT gst.c:826:init_post: GLib runtime version: 2.64.6
+0:00:00.024946776 3169336 0x55a801dedc00 INFO                GST_INIT gst.c:828:init_post: GLib headers version: 2.64.6
+0:00:00.024948910 3169336 0x55a801dedc00 INFO                GST_INIT gst.c:830:init_post: initialized GStreamer successfully
+No such element or plugin 'identity_py'
+#+end_quote
+
+
+**** Good
+#+begin_src bash
+cd /home/jimi_damon/Projects/work/GST/gstreamer/subprojects/gst-python/examples/plugins
+GST_PLUGIN_PATH=$GST_PLUGIN_PATH:$PWD gst-inspect-1.0 identity_py
+#+end_src
+
+#+begin_quote
+(gst-inspect-1.0:3171569): GStreamer-CRITICAL **: 09:38:15.518: The created element should be floating, this is probably caused by faulty bindings
+Factory Details:
+  Rank                     none (0)
+  Long-name                Identity Python
+  Klass                    Transform
+  Description              Simple identity element written in python
+  Author                   Marianna S. Buschle
+
+Plugin Details:
+  Name                     python
+  Description              loader for plugins written in python
+  Filename                 /home/jimi_damon/Projects/work/GST/gstreamer/build/subprojects/gst-python/plugin/libgstpython.so
+  Version                  1.20.4
+  License                  LGPL
+  Source module            gst-python
+  Binary package           GStreamer Python
+  Origin URL               http://gstreamer.freedesktop.org
+
+GObject
+ +----GInitiallyUnowned
+       +----GstObject
+             +----GstElement
+                   +----GstBaseTransform
+                         +----identity+Identity
+
+Pad Templates:
+  SINK template: 'sink'
+    Availability: Always
+    Capabilities:
+      ANY
+
+  SRC template: 'src'
+    Availability: Always
+    Capabilities:
+      ANY
+
+Element has no clocking capabilities.
+Element has no URI handling capabilities.
+
+Pads:
+  SINK: 'sink'
+    Pad Template: 'sink'
+  SRC: 'src'
+    Pad Template: 'src'
+#+end_quote
+
+
+
+**** Best
+
+#+begin_src bash
+./gst-env.py
+GST_PLUGIN_PATH=$GST_PLUGIN_PATH:/home/jimi_damon/Projects/work/GST/gstreamer/subprojects/gst-python/examples/plugins gst-inspect-1.0 identity_py
+#+end_src
+
+
+*** Installing the examples into a module loadable setting
+
+
+** GI capabilities
+
+
