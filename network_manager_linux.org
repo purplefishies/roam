@@ -1,0 +1,27 @@
+:PROPERTIES:
+:ID:       1b5b69e0-ded1-4869-b90e-16d3d73827b0
+:END:
+#+SETUPFILE:./hugo_setup.org
+#+HUGO_SECTION: zettels
+#+TITLE: Network Manager (Linux)
+
+
+*  
+
+* CLI
+
+
+#+begin_src bash
+sudo  nmcli dev wifi hotspot ifname wlx984827ec02d0  con-name "MyHotspot" ssid TEST3 password "test1234"
+sudo nmcli device wifi connect CSxVia-123456 ifname wlx984827ec02d0 
+#+end_src
+
+
+** Works
+:PROPERTIES:
+:CAPTURED: <2022-12-05 14:27>
+:END:
+#+begin_src bash
+nmcli device wifi connect CSxVia-123456 ifname wlx984827dec3b5
+
+#+end_src
