@@ -1,0 +1,30 @@
+:PROPERTIES:
+:ID:       e426da7b-caab-4590-8d34-55d6094349fe
+:END:
+#+SETUPFILE:./hugo_setup.org
+#+HUGO_SECTION: zettels
+#+TITLE: tmux
+
+
+
+*  Recording with asciinema
+:PROPERTIES:
+:CAPTURED: <2022-12-15 14:59>
+:END:
+
+[[https://gist.github.com/worldofprasanna/1861b182103cef452ec58471679a7e5b][Original Link]]
+
+1. Start a new tmux named session tmux new -s terminal-capture
+2. Split the screen using these commands,
+   - vertical split <C-b>"
+   - horizontal split <C-b>%
+3. To navigate between the panes,
+   - To goto Left pane <C-b> left-key
+   - To goto Right pane <C-b> right-key
+   - To goto Top pane <C-b> up-key
+   - To goto Down pane <C-b> down-key
+4. Detach the session tmux <C-b>+d
+5. Record the tmux session with asciinema asciinema rec -c "tmux attach -t terminal-capture"
+6. Detach the tmux session, save the recording and convert it into gif
+
+
