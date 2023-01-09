@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       67229d9a-3f54-4b10-9657-25e97414040f
+:END:
+#+SETUPFILE:./hugo_setup.org
+#+HUGO_SECTION: zettels
+#+TITLE: Chrome
+
+
+* Disabling the accesibility / Control-F override
+:PROPERTIES:
+:CAPTURED: <2023-01-17 10:53>
+:END:
+
+[[./chrome.org_20230117_105318_X71hI3.png]]
