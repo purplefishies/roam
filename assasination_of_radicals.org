@@ -1,0 +1,19 @@
+:PROPERTIES:
+:ID:       eb6e9e23-a955-41e6-b831-bdc87cd8fba2
+:CAPTURED: <2023-01-18 06:07>
+:END:
+#+SETUPFILE:./hugo_setup.org
+#+HUGO_SECTION: zettels
+#+TITLE: Assasination of Radicals
+
+
+
+* Notables
+
+** MLK
+
+
+** Malcolm X
+
+
+** Fred Hampton
