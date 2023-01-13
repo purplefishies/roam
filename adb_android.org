@@ -1,0 +1,28 @@
+:PROPERTIES:
+:ID:       4e99221e-3ae5-42c0-a016-8d08c6614d44
+:CAPTURED: <2023-01-19 11:57>
+:END:
+#+SETUPFILE:./hugo_setup.org
+#+HUGO_SECTION: zettels
+#+TITLE: ADB Android
+
+
+
+
+* Installation
+#+begin_src bash 
+sudo apt install adb
+#+end_src
+
+
+** Adding udev rules
+1. Add your user to plugdev group
+2. Create a file /etc/udev/rules.d/51-android.rules:
+
+3. Add this entry
+#+begin_src bash
+SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="d002", MODE="0660",
+GROUP="plugdev", SYMLINK+="android%n"
+#+end_src
+
+
